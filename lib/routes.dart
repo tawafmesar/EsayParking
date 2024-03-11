@@ -1,3 +1,4 @@
+import 'package:esaypark/view/screen/addvehicle.dart';
 import 'package:esaypark/view/screen/auth/forgetpassword/forgetpassword.dart';
 import 'package:esaypark/view/screen/auth/forgetpassword/resetpassword.dart';
 import 'package:esaypark/view/screen/auth/forgetpassword/success_resetpassword.dart';
@@ -7,6 +8,7 @@ import 'package:esaypark/view/screen/auth/signup.dart';
 import 'package:esaypark/view/screen/auth/success_signup.dart';
 import 'package:esaypark/view/screen/auth/verifycodesignup.dart';
 import 'package:esaypark/view/screen/home.dart';
+import 'package:esaypark/view/screen/vehicle.dart';
 import 'view/screen/spalshscreen.dart';
 import 'core/constant/routes.dart';
 import 'package:get/get.dart';
@@ -28,8 +30,10 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRoute.successResetpassword, page: () => const SuccessResetPassword()),
   GetPage(name: AppRoute.successSignUp, page: () => const SuccessSignUp()),
   GetPage(name: AppRoute.verfiyCodeSignUp, page: () => const VerfiyCodeSignUp()),
+  GetPage(name: AppRoute.homepage , page: () =>  HomeScreen()),
 
-GetPage(name: AppRoute.homepage , page: () =>  HomeScreen()),
+  GetPage(name: AppRoute.vehicleScreen , page: () =>  VehicleScreen()),
+  GetPage(name: AppRoute.addvehicleScreen , page: () =>  AddVehicleScreen()),
 
 
 

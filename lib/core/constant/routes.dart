@@ -16,6 +16,9 @@ class AppRoute {
   static const String votesSuggestions = "/votesSuggestions";
   static const String hotelsScreen = "/hotelsScreen";
   static const String hotelDetailsScreen = "/hotelDetailsScreen";
+  static const String vehicleScreen = "/vehicleScreen";
+  static const String addvehicleScreen = "/addvehicleScreen";
+
 
 
 

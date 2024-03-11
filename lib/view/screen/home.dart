@@ -1,6 +1,7 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:esaypark/view/screen/parkinglots_map.dart';
 import 'package:esaypark/view/screen/parkinglots_table.dart';
+import 'package:esaypark/view/screen/vehicle.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -19,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _pages = [
     ParkinglotsMap(),
     ParkinglotsTable(),
-    const Text('Vehicles'),
+    VehicleScreen(),
     const Text('Logout')
   ];
   int _index = 0;

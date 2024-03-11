@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/constant/parkinglot.dart';
 import '../../helpers/shared_prefs.dart';
+import '../widget/cardbutton.dart';
 
 class ParkinglotsTable extends StatefulWidget {
   const ParkinglotsTable({Key? key}) : super(key: key);
@@ -18,25 +19,7 @@ class _ParkinglotsTableState extends State<ParkinglotsTable> {
   /// We can also create a turn-by-turn navigation for a particular restaurant.
   /// 🔥 Let's look at it in the next video!!
 
-  Widget cardButtons(IconData iconData, String label) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 10),
-      child: ElevatedButton(
-        onPressed: () {},
-        style: ElevatedButton.styleFrom(
-          padding: const EdgeInsets.all(5),
-          minimumSize: Size.zero,
-        ),
-        child: Row(
-          children: [
-            Icon(iconData, size: 16),
-            const SizedBox(width: 2),
-            Text(label)
-          ],
-        ),
-      ),
-    );
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -103,14 +86,14 @@ class _ParkinglotsTableState extends State<ParkinglotsTable> {
                                     const Spacer(),
                                     const Text('Waiting time: 2hrs'),
                                     Text(
-                                      'Closes at 10PM',
+                                      'the car our vehicle',
                                       style:
                                       TextStyle(color: Colors.redAccent[100]),
                                     ),
                                     Row(
                                       children: [
-                                        cardButtons(Icons.call, 'Call'),
-                                        cardButtons(Icons.location_on, 'Map'),
+                                        const cardButtons(iconData: Icons.call, label: 'Call',),
+                                        const cardButtons(iconData: Icons.location_on, label: 'Map',),
                                         const Spacer(),
                                         Text(
                                             '${(getDistanceFromSharedPrefs(index) / 1000).toStringAsFixed(2)}km'),
