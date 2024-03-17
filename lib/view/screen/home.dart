@@ -1,12 +1,16 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:esaypark/view/screen/parkinglots_map.dart';
 import 'package:esaypark/view/screen/parkinglots_table.dart';
+import 'package:esaypark/view/screen/test.dart';
 import 'package:esaypark/view/screen/vehicle.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import '../../controller/home_controller.dart';
+import '../../controller/parkinglot_controller.dart';
+import '../../controller/vehicle_controller.dart';
 import '../../core/constant/color.dart';
+import 'auth/logout.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -21,12 +25,16 @@ class _HomeScreenState extends State<HomeScreen> {
     ParkinglotsMap(),
     ParkinglotsTable(),
     VehicleScreen(),
-    const Text('Logout')
+    LogoutScreen()
   ];
   int _index = 0;
 
   @override
   Widget build(BuildContext context) {
+    Get.put(VehiclesControllerImp());
+
+    Get.put(ParkingLotControllerImp());
+
     return Scaffold(
       body: _pages[_index],
       bottomNavigationBar: BottomNavigationBar(

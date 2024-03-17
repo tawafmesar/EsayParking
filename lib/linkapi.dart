@@ -26,5 +26,9 @@ class AppLink {
   static const String vehicleAdd = "$server/vehicle/add.php"  ;
   static const String car = "$server/upload/car.jpg";
 
+  static const String viewparkinglot = "$server/viewparkinglot.php"  ;
+
+  static const String addreservation = "$server/reservation/addreservation.php"  ;
+
 
 }

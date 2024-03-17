@@ -4,14 +4,15 @@ class cardButtons extends StatelessWidget {
 
   final IconData iconData ;
   final String label;
-  const cardButtons({super.key, required this.iconData, required this.label});
+  final Function()? onPressed ;
+  const cardButtons({super.key, required this.iconData, required this.label, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(right: 10),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           padding: const EdgeInsets.all(5),
           minimumSize: Size.zero,

@@ -13,7 +13,7 @@ List<Map> parkinglot = [
     'name': 'KFC',
     'items': 'Buckets, Burgers, Biryani, Snacks, Beverages',
     'image':
-        'https://indiaeducationdiary.in/wp-content/uploads/2020/10/IMG-20201024-WA0014.jpg',
+    'https://indiaeducationdiary.in/wp-content/uploads/2020/10/IMG-20201024-WA0014.jpg',
     'latitude': '16.964995',
     'longitude': '42.540712',
   },
@@ -22,7 +22,7 @@ List<Map> parkinglot = [
     'name': 'Domino\'s',
     'items': 'Pizza, Sides, Beverages, Pasta, Chicken',
     'image':
-        'https://image.cnbcfm.com/api/v1/image/106334183-1578943648578gettyimages-526250086.jpeg?v=1578943742&w=1600&h=900',
+    'https://image.cnbcfm.com/api/v1/image/106334183-1578943648578gettyimages-526250086.jpeg?v=1578943742&w=1600&h=900',
     'latitude': '16.964246',
     'longitude': '42.540004',
   },

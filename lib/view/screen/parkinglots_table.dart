@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../controller/parkinglot_controller.dart';
 import '../../core/constant/parkinglot.dart';
 import '../../helpers/shared_prefs.dart';
 import '../widget/cardbutton.dart';
@@ -23,6 +25,8 @@ class _ParkinglotsTableState extends State<ParkinglotsTable> {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(ParkingLotControllerImp());
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Parking lot Table'),
@@ -92,13 +96,16 @@ class _ParkinglotsTableState extends State<ParkinglotsTable> {
                                     ),
                                     Row(
                                       children: [
-                                        const cardButtons(iconData: Icons.call, label: 'Call',),
-                                        const cardButtons(iconData: Icons.location_on, label: 'Map',),
-                                        const Spacer(),
-                                        Text(
-                                            '${(getDistanceFromSharedPrefs(index) / 1000).toStringAsFixed(2)}km'),
+                                        cardButtons(iconData: Icons.car_rental,
+                                          label: 'Book now',
+                                          onPressed:(
+                                          ){
+                                            controller.addreservation(parkinglot[index]['id']);
+
+                                          },),
                                       ],
-                                    )
+                                    ),
+
                                   ],
                                 ),
                               ),

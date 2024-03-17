@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:esaypark/core/constant/routes.dart';
 import 'package:esaypark/data/models/vehicle_model.dart';
 import 'package:get/get.dart';
@@ -51,10 +53,28 @@ class VehiclesControllerImp extends VehiclesController {
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
 
-        // Assuming response['data'] is a List of Map<String, dynamic>
-        vehicles.addAll(response['data'].map((e) => vehicle_model.fromJson(e)).toList());
-        print(vehicles);
+        List<vehicle_model> vehicleModels = [];
+        for (var item in response['data']) {
+          if (item is Map<String, dynamic>) {
+            vehicleModels.add(vehicle_model.fromJson(item));
+          }
+        }
 
+        vehicles.addAll(vehicleModels);
+
+        // Extracting only vehicleId from vehicleModels where vehicleStatus is 1
+        List<String?> vehicleIds = vehicleModels
+            .where((model) => model.vehicleStatus == "1")
+            .map((model) => model.vehicleId)
+            .toList();
+        print(vehicleIds);
+
+// Convert the list of vehicleIds to JSON and then store it
+        List<int> intVehicleIds = vehicleIds.map((id) => int.parse(id!)).toList();
+        String vehicleIdsJson = jsonEncode(intVehicleIds[0]);
+        myServices.sharedPreferences.setString("vehicleIds", vehicleIdsJson);
+
+        print(vehicleIdsJson);
 
       } else {
         statusRequest = StatusRequest.failure;
