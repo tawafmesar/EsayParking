@@ -46,7 +46,7 @@ class _ParkinglotsTableState extends State<ParkinglotsTable> {
                       child: Icon(Icons.search),
                     ),
                     padding: EdgeInsets.all(15),
-                    placeholder: 'Search dish or restaurant name',
+                    placeholder: 'Search by name in parkinglot',
                     style: TextStyle(color: Colors.white),
                     decoration: BoxDecoration(
                       color: Colors.black54,
