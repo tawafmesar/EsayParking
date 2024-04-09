@@ -24,13 +24,13 @@ class Login extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: AppColor.backgroundcolor,
-        elevation: 0.0,
+        backgroundColor: AppColor.secoundColor2,
+        elevation: 10.0,
         title: Text('Login',
             style: Theme.of(context)
                 .textTheme
                 .headlineSmall!
-                .copyWith(color: AppColor.grey)),
+                .copyWith(color: AppColor.whitee)),
       ),
       body: WillPopScope(
         onWillPop: alertExitApp,

@@ -14,14 +14,15 @@ class SuccessSignUp extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: AppColor.backgroundcolor,
-        elevation: 0.0,
+        backgroundColor: AppColor.secoundColor2,
+        elevation: 10.0,
         title: Text('Success',
             style: Theme.of(context)
                 .textTheme
-                .headline1!
-                .copyWith(color: AppColor.grey)),
+                .headlineSmall!
+                .copyWith(color: AppColor.whitee)),
       ),
+
       body: Container(
         padding: const EdgeInsets.all(15),
         child: Column(children: [

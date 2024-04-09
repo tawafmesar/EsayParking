@@ -18,15 +18,17 @@ class ForgetPassword extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-            backgroundColor: AppColor.backgroundcolor,
-            elevation: 0.0,
-            centerTitle: true,
-            title: Text("Forgot Password",
-                style: Theme
-                    .of(context)
-                    .textTheme
-                    .headline1!
-                    .copyWith(color: AppColor.grey))),
+          centerTitle: true,
+          backgroundColor: AppColor.secoundColor2,
+          elevation: 10.0,
+          title: Text('Forgot Password',
+              style: Theme.of(context)
+                  .textTheme
+                  .headlineSmall!
+                  .copyWith(color: AppColor.whitee)),
+        )
+
+        ,
         body: GetBuilder<ForgetPasswordControllerImp>(
             builder: (controller) =>
 
