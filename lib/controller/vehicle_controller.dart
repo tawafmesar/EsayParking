@@ -46,6 +46,7 @@ class VehiclesControllerImp extends VehiclesController {
   @override
   getVehiclesdata() async {
     vehicles.clear();
+
     statusRequest = StatusRequest.loading;
     var response = await vehiclesData.getdata(users_id!);
     print("=============================== Controller $response ");
@@ -59,7 +60,6 @@ class VehiclesControllerImp extends VehiclesController {
             vehicleModels.add(vehicle_model.fromJson(item));
           }
         }
-
         vehicles.addAll(vehicleModels);
 
         // Extracting only vehicleId from vehicleModels where vehicleStatus is 1

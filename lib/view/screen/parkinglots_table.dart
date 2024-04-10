@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 import '../../controller/parkinglot_controller.dart';
@@ -8,6 +9,7 @@ import '../../core/class/handlingdataview.dart';
 import '../../core/constant/color.dart';
 import '../../core/constant/parkinglot.dart';
 import '../../helpers/shared_prefs.dart';
+import '../widget/auth/custombuttonauth.dart';
 import '../widget/cardbutton.dart';
 
 class ParkinglotsTable extends StatefulWidget {
@@ -15,6 +17,115 @@ class ParkinglotsTable extends StatefulWidget {
 
   @override
   State<ParkinglotsTable> createState() => _ParkinglotsTableState();
+}
+
+
+void _showBottomSheet(BuildContext context , String parkigid) {
+  String? selectedOption;
+  String? parkig_id = parkigid;
+
+  showModalBottomSheet(
+    context: context,
+    elevation: 10,
+
+    shape: const RoundedRectangleBorder(
+      side: BorderSide(
+        color: AppColor.primaryColor,
+        width: 3.0,
+      ),
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(35),
+        topRight: Radius.circular(35),
+      ),
+    ),
+    builder: (_) {
+      return Container(
+        height: 300, // Adjust this value to your desired height
+
+        child: GetBuilder<ParkingLotControllerImp>(
+          builder: (controller) => HandlingDataViewRequest(
+            statusRequest: controller.statusRequest,
+            widget: Container(
+              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+              child: Form(
+                key: controller.formstate,
+                child: ListView(
+                  children: [
+                    const SizedBox(height: 10),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Text(
+                        'Select the vehicle you want to reserve parking for',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: AppColor.whitee,
+                          shadows: [
+                            Shadow(
+                              blurRadius: 10.0,
+                              color: Colors.black.withOpacity(0.5),
+                              offset: Offset(5.0, 5.0),
+                            ),
+                          ],
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+
+                    const SizedBox(height: 20),
+
+
+                    DropdownButtonFormField<String>(
+                      value: selectedOption, // Initially selected option (can be null).
+                      decoration: InputDecoration(
+                        hintText: 'Select the vehicle',
+                        hintStyle: const TextStyle(fontSize: 14),
+                        floatingLabelBehavior: FloatingLabelBehavior.always,
+                        contentPadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 30),
+                        label: Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 9),
+                          child: Text('The Vehicle'),
+                        ),
+                        suffixIcon: InkWell(child: Icon(FontAwesomeIcons.car)),
+                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                      ),
+
+                      onChanged: (String? newValue) {
+
+
+                        print('change $newValue');
+                        selectedOption = newValue;
+                        if (newValue != null) {
+                          controller.vehicle_id.text = controller.vehivleseMap[newValue] ?? ''; // Assign the selected college_id to controller.college_id
+
+                        }
+
+                      },
+                      items: controller.vehiclesdata.map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
+
+                    const SizedBox(height: 20),
+
+                    CustomButtomAuth(text: "Save", onPressed: () {
+                      //controller.addRes();
+                      print(parkig_id);
+                      controller.addreservation(parkig_id);
+                    }),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+    },
+  );
 }
 
 class _ParkinglotsTableState extends State<ParkinglotsTable> {
@@ -109,11 +220,13 @@ class _ParkinglotsTableState extends State<ParkinglotsTable> {
                                       children: [
                                         cardButtons(iconData: Icons.car_rental,
                                           label: 'Book now',
-                                          onPressed:(
-                                              ){
-                                            controller.addreservation(parkinglot[index]['id']);
-
-                                          },),
+                                        onPressed: () => _showBottomSheet(context,parkinglot[index]['id'])
+                                          // onPressed:(
+                                          //     ){
+                                          //   // controller.addreservation(parkinglot[index]['id']);
+                                          //
+                                          // },
+                              ),
                                       ],
                                     ),
 

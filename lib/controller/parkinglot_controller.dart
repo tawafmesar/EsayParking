@@ -1,6 +1,7 @@
 import 'package:esaypark/core/constant/routes.dart';
 import 'package:esaypark/data/models/parkinglot_model.dart';
 import 'package:esaypark/data/models/vehicle_model.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../core/class/statusrequest.dart';
@@ -31,7 +32,13 @@ class ParkingLotControllerImp extends ParkingLotController {
 
   // List parkinglot = [];
 
+  late TextEditingController vehicle_id;
+  GlobalKey<FormState> formstate = GlobalKey<FormState>();
 
+  List<String> vehiclesdata = [];
+
+  Map<String, String> vehivleseMap = {};
+  VehiclesData vehiclesData = VehiclesData(Get.find());
 
 
 
@@ -39,7 +46,9 @@ class ParkingLotControllerImp extends ParkingLotController {
   void onInit() {
     users_id = myServices.sharedPreferences.getString("id") ;
     vehicleIds = myServices.sharedPreferences.getString("vehicleIds") ;
+    vehicle_id = TextEditingController();
 
+    getVehiclesdata();
     getparkinglot();
     super.onInit();
 
@@ -47,6 +56,12 @@ class ParkingLotControllerImp extends ParkingLotController {
     // print(placesid);
   }
 
+  @override
+  void dispose() {
+    vehicle_id.dispose();
+
+    super.dispose();
+  }
 
 
   @override
@@ -102,14 +117,15 @@ class ParkingLotControllerImp extends ParkingLotController {
 
 
       update();
-      var response = await parkingLotData.addreservationdata(vehicleIds!, parkingid);
+      var response = await parkingLotData.addreservationdata(vehicle_id.text, parkingid);
       print("=============================== Controller $response ");
       statusRequest = handlingData(response);
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
           // data.addAll(response['data']);
           getparkinglot();
-          _navigateTobackScreen();
+          _navigateToback2Screen();
+          update();
         } else {
           Get.defaultDialog(title: "Error", middleText: " ");
           statusRequest = StatusRequest.failure;
@@ -121,6 +137,40 @@ class ParkingLotControllerImp extends ParkingLotController {
     }
   }
 
+
+
+  @override
+  getVehiclesdata() async {
+    vehiclesdata.clear();
+    statusRequest = StatusRequest.loading;
+    var response = await vehiclesData.getdata(users_id!);
+    print("=============================== Controller $response ");
+    statusRequest = handlingData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+
+
+
+
+        List<dynamic> responsedata = response['data'];
+        for (var item in responsedata) {
+          String vehicle_id = item['vehicle_id'];
+          String vehicle_name = item['plate_number'];
+          vehiclesdata.add(vehicle_name);
+          vehivleseMap[vehicle_name] = vehicle_id; // Map college_name_en to college_id
+        }
+        print("vehiclesdata......................................");
+        print(vehiclesdata);
+
+        print("vehivleseMap......................................");
+        print(vehivleseMap);
+
+      } else {
+        statusRequest = StatusRequest.failure;
+      }
+    }
+    update();
+  }
 
 
 
@@ -135,7 +185,18 @@ class ParkingLotControllerImp extends ParkingLotController {
     Get.back();
 
   }
+  Future<void> _navigateToback2Screen() async {
+    Get.defaultDialog(
+      title: "Success",
+      middleText: "The reservation was added successfully",
+    );
 
+    await Future.delayed(Duration(seconds: 2));
+
+    Get.back();
+    Get.back();
+
+  }
 
 
 
