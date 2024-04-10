@@ -66,7 +66,7 @@ class ParkingLotControllerImp extends ParkingLotController {
             'id': item['parkinglot_id'].toString(), // Assuming 'id' is a string in your original data
             'name': item['parkinglot_name'].toString(),
             'items': item['parkinglot_dept'].toString(),
-            'image': 'https://axonometric-buildin.000webhostapp.com/upload/${item['parkinglot_img']}',
+            'image': 'http://easyparkingjazan.mooo.com/upload/${item['parkinglot_img']}',
             'latitude': item['latitude'].toString(),
             'longitude': item['longitude'].toString(),
           });

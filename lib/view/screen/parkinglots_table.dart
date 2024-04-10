@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../controller/parkinglot_controller.dart';
+import '../../core/class/handlingdataview.dart';
+import '../../core/constant/color.dart';
 import '../../core/constant/parkinglot.dart';
 import '../../helpers/shared_prefs.dart';
 import '../widget/cardbutton.dart';
@@ -28,9 +30,16 @@ class _ParkinglotsTableState extends State<ParkinglotsTable> {
     final controller = Get.put(ParkingLotControllerImp());
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Parking lot Table'),
-      ),
+      appBar:
+      AppBar(
+      backgroundColor: AppColor.secoundColor2,
+      elevation: 10.0,
+      title: Text('Parking lots table',
+          style: Theme.of(context)
+              .textTheme
+              .headlineSmall!
+              .copyWith(color: AppColor.whitee)),
+    ),
       body: SafeArea(
           child: SingleChildScrollView(
             physics: const ScrollPhysics(),
@@ -54,7 +63,9 @@ class _ParkinglotsTableState extends State<ParkinglotsTable> {
                     ),
                   ),
                   const SizedBox(height: 5),
-                  ListView.builder(
+                  GetBuilder<ParkingLotControllerImp>(builder: ((controller) => HandlingDataView(
+                    statusRequest: controller.statusRequest,   widget :
+                    ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     padding: EdgeInsets.zero,
@@ -99,7 +110,7 @@ class _ParkinglotsTableState extends State<ParkinglotsTable> {
                                         cardButtons(iconData: Icons.car_rental,
                                           label: 'Book now',
                                           onPressed:(
-                                          ){
+                                              ){
                                             controller.addreservation(parkinglot[index]['id']);
 
                                           },),
@@ -114,7 +125,10 @@ class _ParkinglotsTableState extends State<ParkinglotsTable> {
                         ),
                       );
                     },
+                  ) )
+                  )
                   ),
+
                 ],
               ),
             ),

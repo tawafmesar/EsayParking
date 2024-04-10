@@ -1,37 +1,98 @@
 List<Map> parkinglot = [
   {
-    'id': '0',
-    'name': 'Starbucks',
-    'items': 'Coffee, Espresso, Cold Brew, Desserts',
-    'image': 'https://api.time.com/wp-content/uploads/2016/04/starbucks.jpeg',
-    'latitude': '16.964752',
-    'longitude': '42.541067',
-
+    'id': '3',
+    'name': '101',
+    'items': 'dept 1',
+    'image': 'parking.png',
+    'latitude': '16.930037',
+    'longitude': '42.622977'
   },
   {
-    'id': '0',
-    'name': 'KFC',
-    'items': 'Buckets, Burgers, Biryani, Snacks, Beverages',
-    'image':
-    'https://indiaeducationdiary.in/wp-content/uploads/2020/10/IMG-20201024-WA0014.jpg',
-    'latitude': '16.964995',
-    'longitude': '42.540712',
+    'id': '4',
+    'name': '102',
+    'items': 'dept 1',
+    'image': 'parking.png',
+    'latitude': '16.930013',
+    'longitude': '42.622974'
   },
   {
-    'id': '0',
-    'name': 'Domino\'s',
-    'items': 'Pizza, Sides, Beverages, Pasta, Chicken',
-    'image':
-    'https://image.cnbcfm.com/api/v1/image/106334183-1578943648578gettyimages-526250086.jpeg?v=1578943742&w=1600&h=900',
-    'latitude': '16.964246',
-    'longitude': '42.540004',
+    'id': '5',
+    'name': '103',
+    'items': 'dept 1',
+    'image': 'parking.png',
+    'latitude': '16.929989',
+    'longitude': '42.622969'
   },
   {
-    'id': '0',
-    'name': 'Pizza Hut',
-    'items': 'Pizza, Sides, Drinks, Deserts',
-    'image': 'https://10619-2.s.cdn12.com/rests/small/w550/h367/103_510330142.jpg',
-    'latitude': '16.963794',
-    'longitude': '42.540288',
+    'id': '6',
+    'name': '104',
+    'items': 'dept 1',
+    'image': 'parking.png',
+    'latitude': '16.929963',
+    'longitude': '42.622965'
   },
-];
+  {
+    'id': '7',
+    'name': '105',
+    'items': 'dept 1',
+    'image': 'parking.png',
+    'latitude': '16.929938',
+    'longitude': '42.622958'
+  },
+  {
+    'id': '8',
+    'name': '106',
+    'items': 'dept 1',
+    'image': 'parking.png',
+    'latitude': '16.929912',
+    'longitude': '42.622957'
+  },
+  {
+    'id': '9',
+    'name': '107',
+    'items': 'dept 1',
+    'image': 'parking.png',
+    'latitude': '16.929916',
+    'longitude': '42.622907'
+  },
+  {
+    'id': '10',
+    'name': '108',
+    'items': 'dept 1',
+    'image': 'parking.png',
+    'latitude': '16.929942',
+    'longitude': '42.622911'
+  },
+  {
+    'id': '11',
+    'name': '109',
+    'items': 'dept 1',
+    'image': 'parking.png',
+    'latitude': '16.929973',
+    'longitude': '42.622919'
+  },
+  {
+    'id': '12',
+    'name': '110',
+    'items': 'dept 1',
+    'image': 'parking.png',
+    'latitude': '16.929997',
+    'longitude': '42.622921'
+  },
+  {
+    'id': '13',
+    'name': '111',
+    'items': 'dept 1',
+    'image': 'parking.png',
+    'latitude': '16.930021',
+    'longitude': '42.622921'
+  },
+  {
+    'id': '14',
+    'name': '112',
+    'items': 'dept 1',
+    'image': 'parking.png',
+    'latitude': '16.930046',
+    'longitude': '42.622923'
+  }
+  ];

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
 
+import '../../core/constant/color.dart';
 import '../../core/constant/parkinglot.dart';
 import '../../helpers/commons.dart';
 import '../../helpers/shared_prefs.dart';
@@ -105,8 +106,8 @@ class _ParkinglotsMapState extends State<ParkinglotsMap> {
       await controller.addSymbol(
         SymbolOptions(
           geometry: _kRestaurant.target,
-          iconSize: 0.2,
-          iconImage: "assets/icon/food.png",
+          iconSize: 0.1,
+          iconImage: "assets/icon/parking.png",
         ),
       );
     }
@@ -117,8 +118,14 @@ class _ParkinglotsMapState extends State<ParkinglotsMap> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Parkinglots Map'),
-      ),
+      backgroundColor: AppColor.secoundColor2,
+      elevation: 10.0,
+      title: Text('Parking lots Map',
+          style: Theme.of(context)
+              .textTheme
+              .headlineSmall!
+              .copyWith(color: AppColor.whitee)),
+    ),
       body: SafeArea(
         child: Stack(
           children: [
