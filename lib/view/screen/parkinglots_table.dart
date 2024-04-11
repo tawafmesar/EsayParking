@@ -45,7 +45,7 @@ void _showBottomSheet(BuildContext context , String parkigid) {
         child: GetBuilder<ParkingLotControllerImp>(
           builder: (controller) => HandlingDataViewRequest(
             statusRequest: controller.statusRequest,
-            widget: Container(
+            widget:  controller.activitreservation == true ?  Container(
               padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
               child: Form(
                 key: controller.formstate,
@@ -120,7 +120,27 @@ void _showBottomSheet(BuildContext context , String parkigid) {
                   ],
                 ),
               ),
+            ) : Container(
+              margin: EdgeInsets.all(10),
+              child: Padding(
+                padding: const EdgeInsets.all(28.0),
+                child: Text(
+                'Sorry, you cannot make more than two reservations at the same time',
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: AppColor.whitee,
+                  shadows: [
+                    Shadow(
+                      blurRadius: 10.0,
+                      color: Colors.black.withOpacity(0.5),
+                      offset: Offset(5.0, 5.0),
+                    ),
+                  ],
+                ),
+                textAlign: TextAlign.left,
             ),
+              ),) ,
           ),
         ),
       );

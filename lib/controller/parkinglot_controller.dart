@@ -1,5 +1,6 @@
 import 'package:esaypark/core/constant/routes.dart';
 import 'package:esaypark/data/models/parkinglot_model.dart';
+import 'package:esaypark/data/models/reservation_model.dart';
 import 'package:esaypark/data/models/vehicle_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,6 +11,7 @@ import '../core/functions/handingdatacontroller.dart';
 
 import '../core/services/services.dart';
 import '../data/datasource/remote/parkinglot_data.dart';
+import '../data/datasource/remote/reservation_data.dart';
 import '../data/datasource/remote/vehicles_data.dart';
 import '../linkapi.dart';
 
@@ -23,14 +25,16 @@ class ParkingLotControllerImp extends ParkingLotController {
 
   String? users_id;
   String? vehicleIds;
+  bool activitreservation =true;
 
 
   StatusRequest statusRequest = StatusRequest.none;
 
   ParkingLotData parkingLotData = ParkingLotData(Get.find());
+  ReservationData reservationData = ReservationData(Get.find());
 
 
-  // List parkinglot = [];
+   List reservationvehicle = [];
 
   late TextEditingController vehicle_id;
   GlobalKey<FormState> formstate = GlobalKey<FormState>();
@@ -50,6 +54,7 @@ class ParkingLotControllerImp extends ParkingLotController {
 
     getVehiclesdata();
     getparkinglot();
+    getReservationdata();
     super.onInit();
 
     // print("placesid ...................................");
@@ -127,8 +132,13 @@ class ParkingLotControllerImp extends ParkingLotController {
           _navigateToback2Screen();
           update();
         } else {
-          Get.defaultDialog(title: "Error", middleText: " ");
-          statusRequest = StatusRequest.failure;
+          //          Get.defaultDialog(title: "Error", middleText: " ");
+          getparkinglot();
+
+          _navigateTobackScreen('Error','This vehicle have previous  reservation ');
+          //statusRequest = StatusRequest.failure;
+          update();
+
         }
       }
       update();
@@ -173,18 +183,69 @@ class ParkingLotControllerImp extends ParkingLotController {
   }
 
 
+  @override
+  getReservationdata() async {
+    reservationvehicle.clear();
 
-  Future<void> _navigateTobackScreen() async {
+    statusRequest = StatusRequest.loading;
+    var response = await reservationData.getdata(users_id!);
+    print("=============================== Controller $response ");
+    statusRequest = handlingData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == "success") {
+
+        reservationvehicle.addAll(response['data'].map((e) => reservation_model.fromJson(e)).toList());
+        print(reservationvehicle);
+
+        int status1Count = 0;
+        int status2Count = 0;
+
+        for (var reservation in reservationvehicle) {
+          if (reservation.reservationStatus == '0') { // Compare with integers
+            status1Count++;
+          } else if (reservation.reservationStatus == '1') { // Compare with integers
+            status2Count++;
+          }
+        }
+
+
+        print('Count of reservationStatus = 0: $status1Count');
+        print('Count of reservationStatus = 1: $status2Count');
+
+
+
+
+        if (status1Count >= 2) {
+          activitreservation = false;
+        } else {
+          activitreservation = true;
+        }
+
+        print('Activitreservation: $activitreservation');
+
+        //print(vehicleIdsJson);
+
+      } else {
+        statusRequest = StatusRequest.failure;
+      }
+    }
+    update();
+  }
+
+
+
+  Future<void> _navigateTobackScreen(String title, String middletext ) async {
     Get.defaultDialog(
-      title: "Success",
-      middleText: "The reservation was added successfully",
+      title: title,
+      middleText: middletext ,
     );
 
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(Duration(seconds: 3));
 
     Get.back();
 
   }
+
   Future<void> _navigateToback2Screen() async {
     Get.defaultDialog(
       title: "Success",
