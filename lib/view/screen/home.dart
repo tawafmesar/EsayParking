@@ -7,6 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import '../../controller/home_controller.dart';
 import '../../core/constant/color.dart';
+import 'ProfileScreen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -21,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
     ParkinglotsMap(),
     ParkinglotsTable(),
     VehicleScreen(),
-    Center(child: const Text('Logout'))
+    ProfileScreen()
   ];
   int _index = 0;
 

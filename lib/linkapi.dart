@@ -30,6 +30,8 @@ class AppLink {
 
   static const String addreservation = "$server/reservation/addreservation.php"  ;
   static const String viewreservation = "$server/reservation/viewreservation.php"  ;
+  static const String removereservation = "$server/reservation/removereservation.php"  ;
+
 
 
 }

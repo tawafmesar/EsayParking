@@ -14,4 +14,10 @@ class ReservationData {
   }
 
 
+  removeReservationData(String id) async {
+    var response = await crud.postData(
+        AppLink.removereservation, {"id": id});
+    return response.fold((l) => l, (r) => r);
+  }
+
 }

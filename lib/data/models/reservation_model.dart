@@ -10,6 +10,11 @@ class reservation_model {
   String? usersName;
   String? usersEmail;
   String? usersPhone;
+  String? parkinglotId;
+  String? parkinglotName;
+  String? parkinglotDept;
+  String? latitude;
+  String? longitude;
 
   reservation_model(
       {this.reservationId,
@@ -22,7 +27,12 @@ class reservation_model {
         this.usersId,
         this.usersName,
         this.usersEmail,
-        this.usersPhone});
+        this.usersPhone,
+        this.parkinglotId,
+        this.parkinglotName,
+        this.parkinglotDept,
+        this.latitude,
+        this.longitude});
 
   reservation_model.fromJson(Map<String, dynamic> json) {
     reservationId = json['reservation_id'];
@@ -36,6 +46,11 @@ class reservation_model {
     usersName = json['users_name'];
     usersEmail = json['users_email'];
     usersPhone = json['users_phone'];
+    parkinglotId = json['parkinglot_id'];
+    parkinglotName = json['parkinglot_name'];
+    parkinglotDept = json['parkinglot_dept'];
+    latitude = json['latitude'];
+    longitude = json['longitude'];
   }
 
   Map<String, dynamic> toJson() {
@@ -51,6 +66,11 @@ class reservation_model {
     data['users_name'] = this.usersName;
     data['users_email'] = this.usersEmail;
     data['users_phone'] = this.usersPhone;
+    data['parkinglot_id'] = this.parkinglotId;
+    data['parkinglot_name'] = this.parkinglotName;
+    data['parkinglot_dept'] = this.parkinglotDept;
+    data['latitude'] = this.latitude;
+    data['longitude'] = this.longitude;
     return data;
   }
 }

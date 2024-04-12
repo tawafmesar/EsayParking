@@ -66,6 +66,9 @@ dependencies:
   flutter_svg: ^2.0.5
   mapbox_gl: ^0.15.0
   flutter_native_splash: ^2.0.2
+  device_preview: ^1.1.0
+
+  flutter_vector_icons: ^2.0.0
 
   location: ^4.3.0
   carousel_slider: ^4.0.0

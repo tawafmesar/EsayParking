@@ -8,6 +8,10 @@ class AppColor {
 
   static const Color primaryColor = Color(0xff10A9AE);
   static const Color primaryColor2 = Color(0xffC99E54);
+  static const Color backgroundcolor2 = Color(0xff504E4E);
+
+
+
   static const Color bottombar = Color(0xff343434);
   static const Color ihramprimaryColor = Color(0xff5D5E60);
   static const Color ihramcolor = Color(0xffDEF3EE);

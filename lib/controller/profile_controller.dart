@@ -15,20 +15,21 @@ import '../data/datasource/remote/reservation_data.dart';
 import '../data/datasource/remote/vehicles_data.dart';
 import '../linkapi.dart';
 
-abstract class ParkingLotController extends GetxController {
+abstract class ProfileController extends GetxController {
 
 }
 
-class ParkingLotControllerImp extends ParkingLotController {
+class ProfileControllerImp extends ProfileController {
 
   MyServices myServices = Get.find();
 
   String? users_id;
   String? vehicleIds;
-  bool activitreservation =true;
-  String allReservationCount = '0';
+  String? users_name;
 
-  String? allReservationCountshared;
+  String allReservationCount = '0';
+  String allvehivlesCount = '0';
+
 
   StatusRequest statusRequest = StatusRequest.none;
 
@@ -36,7 +37,7 @@ class ParkingLotControllerImp extends ParkingLotController {
   ReservationData reservationData = ReservationData(Get.find());
 
 
-   List reservationvehicle = [];
+  List reservationvehicle = [];
 
   late TextEditingController vehicle_id;
   GlobalKey<FormState> formstate = GlobalKey<FormState>();
@@ -51,11 +52,12 @@ class ParkingLotControllerImp extends ParkingLotController {
   @override
   void onInit() {
     users_id = myServices.sharedPreferences.getString("id") ;
+    users_name = myServices.sharedPreferences.getString("username") ;
+
     vehicleIds = myServices.sharedPreferences.getString("vehicleIds") ;
     vehicle_id = TextEditingController();
 
     getVehiclesdata();
-    getparkinglot();
     getReservationdata();
     super.onInit();
 
@@ -64,20 +66,12 @@ class ParkingLotControllerImp extends ParkingLotController {
 
     updatedata();
 
-    if (myServices.sharedPreferences.getString("allReservationCount") == null) {
-      allReservationCountshared = "";
-    } else {
-      allReservationCountshared = myServices.sharedPreferences.getString("allReservationCount")!;
-    }
 
-
-    print('Count of allReservationCountshared = 0: $allReservationCountshared');
 
   }
 
 
   updatedata(){
-
     updateshaerd( 'allReservationCount' ,  '');
     update();
 
@@ -91,36 +85,7 @@ class ParkingLotControllerImp extends ParkingLotController {
   }
 
 
-  @override
-  getparkinglot() async {
-    parkinglot.clear();
-    statusRequest = StatusRequest.loading;
-    var response = await parkingLotData.getdata();
-    print("=============================== Controller $response ");
-    statusRequest = handlingData(response);
-    if (StatusRequest.success == statusRequest) {
-      if (response['status'] == "success") {
 
-        // Assuming the response contains a list of parking lot data
-        List<dynamic> responseData = response['data']; // Adjust this according to your actual response structure
-        for (var item in responseData) {
-          parkinglot.add({
-            'id': item['parkinglot_id'].toString(), // Assuming 'id' is a string in your original data
-            'name': item['parkinglot_name'].toString(),
-            'items': item['parkinglot_dept'].toString(),
-            'image': 'http://easyparkingjazan.mooo.com/upload/${item['parkinglot_img']}',
-            'latitude': item['latitude'].toString(),
-            'longitude': item['longitude'].toString(),
-          });
-        }
-
-
-      } else {
-        statusRequest = StatusRequest.failure;
-      }
-    }
-    update();
-  }
 
 
   gotoaddvehicle(){
@@ -150,12 +115,10 @@ class ParkingLotControllerImp extends ParkingLotController {
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
           // data.addAll(response['data']);
-          getparkinglot();
           _navigateToback2Screen();
           update();
         } else {
           //          Get.defaultDialog(title: "Error", middleText: " ");
-          getparkinglot();
 
           _navigateTobackScreen('Error','This vehicle have previous  reservation ');
           //statusRequest = StatusRequest.failure;
@@ -183,17 +146,30 @@ class ParkingLotControllerImp extends ParkingLotController {
 
 
 
+        int vehivleCount = 0;
+
+
+
+
 
         List<dynamic> responsedata = response['data'];
         for (var item in responsedata) {
+          vehivleCount++;
+
           String vehicleId = item['vehicle_id'];
           String vehicleName = item['plate_number'];
           vehiclesdata.add(vehicleName);
           vehivleseMap[vehicleName] = vehicleId; // Map college_name_en to college_id
         }
+
+        allvehivlesCount = vehivleCount.toString();
+
         print("vehiclesdata......................................");
         print(vehiclesdata);
 
+        print("allvehivlesCount......................................");
+        print(allvehivlesCount);
+        
         print("vehivleseMap......................................");
         print(vehivleseMap);
 
@@ -243,13 +219,7 @@ class ParkingLotControllerImp extends ParkingLotController {
 
 
 
-        if (status1Count >= 2) {
-          activitreservation = false;
-        } else {
-          activitreservation = true;
-        }
 
-        print('Activitreservation: $activitreservation');
         print('allReservationCount: $allReservationCount');
 
         //print(vehicleIdsJson);
@@ -259,6 +229,35 @@ class ParkingLotControllerImp extends ParkingLotController {
       }
     }
     update();
+  }
+
+  @override
+  remove(String id) async {
+    //  data.clear();
+    print("=============================== id $id ");
+    print(id);
+
+    statusRequest = StatusRequest.loading;
+    var response = await reservationData.removeReservationData(id);
+    print("=============================== Controller $response ");
+    statusRequest = handlingData(response);
+    if (StatusRequest.success == statusRequest) {
+      // Start backend
+      if (response['status'] == "success") {
+
+
+        _navigateTobackScreen('Success', 'Your reservation has been delete successfully');
+        getReservationdata();
+        update();
+
+        // data.addAll(response['data']);
+      } else {
+        statusRequest = StatusRequest.failure;
+      }
+      // End
+    }
+    update();
+
   }
 
 
@@ -291,7 +290,6 @@ class ParkingLotControllerImp extends ParkingLotController {
   updateshaerd(String Kay , String Value){
     myServices.sharedPreferences
         .setString(Kay, Value);
-    
 
   }
 
