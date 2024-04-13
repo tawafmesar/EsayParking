@@ -41,7 +41,20 @@ class LoginControllerImp extends LoginController {
       if (StatusRequest.success == statusRequest) {
         if (response['status'] == "success") {
           if (response['data']['users_approve'] == "1") {
-            myServices.sharedPreferences
+            if (response['data']['user_admin'] == "1") {
+
+              myServices.sharedPreferences
+                  .setString("id", response['data']['users_id']);
+              myServices.sharedPreferences
+                  .setString("username", response['data']['users_name']);
+              myServices.sharedPreferences
+                  .setString("email", response['data']['users_email']);
+              myServices.sharedPreferences
+                  .setString("phone", response['data']['users_phone']);
+              myServices.sharedPreferences.setString("step", "3");
+
+              Get.offNamed(AppRoute.parkingpolice);
+            } else{            myServices.sharedPreferences
                 .setString("id", response['data']['users_id']);
             myServices.sharedPreferences
                 .setString("username", response['data']['users_name']);
@@ -50,7 +63,9 @@ class LoginControllerImp extends LoginController {
             myServices.sharedPreferences
                 .setString("phone", response['data']['users_phone']);
             myServices.sharedPreferences.setString("step", "2");
-            Get.offNamed(AppRoute.homepage);
+            Get.offNamed(AppRoute.homepage);}
+
+
           } else {
             Get.toNamed(AppRoute.verfiyCodeSignUp,
                 arguments: {"email": email.text});

@@ -32,6 +32,8 @@ class AppLink {
   static const String viewreservation = "$server/reservation/viewreservation.php"  ;
   static const String removereservation = "$server/reservation/removereservation.php"  ;
 
+  static const String viewallreservation = "$server/reservation/viewallreservation.php"  ;
+  static const String checkoutreservation = "$server/reservation/checkout.php"  ;
 
 
 }

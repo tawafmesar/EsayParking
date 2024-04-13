@@ -8,6 +8,7 @@ import 'package:esaypark/view/screen/auth/signup.dart';
 import 'package:esaypark/view/screen/auth/success_signup.dart';
 import 'package:esaypark/view/screen/auth/verifycodesignup.dart';
 import 'package:esaypark/view/screen/home.dart';
+import 'package:esaypark/view/screen/parkingpolice.dart';
 import 'package:esaypark/view/screen/vehicle.dart';
 import 'view/screen/spalshscreen.dart';
 import 'core/constant/routes.dart';
@@ -34,6 +35,7 @@ List<GetPage<dynamic>>? routes = [
 
   GetPage(name: AppRoute.vehicleScreen , page: () =>  VehicleScreen()),
   GetPage(name: AppRoute.addvehicleScreen , page: () =>  AddVehicleScreen()),
+  GetPage(name: AppRoute.parkingpolice , page: () =>  ParkingPoliceScreen()),
 
 
 

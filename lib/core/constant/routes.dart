@@ -18,6 +18,7 @@ class AppRoute {
   static const String hotelDetailsScreen = "/hotelDetailsScreen";
   static const String vehicleScreen = "/vehicleScreen";
   static const String addvehicleScreen = "/addvehicleScreen";
+  static const String parkingpolice = "/parkingpolice";
 
 
 
