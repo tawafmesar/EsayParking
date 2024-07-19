@@ -49,10 +49,7 @@ class _SplashScreenState extends State<SplashScreen> {
       _permissionGranted = await _location.requestPermission();
     }
 
-    // Get capture the current user location
     LocationData _locationData = await _location.getLocation();
-    // LatLng currentLatLng =
-    // LatLng(_locationData.latitude!, _locationData.longitude!);
 
     LatLng currentLatLng = LatLng(16.980011, 42.617043);
 

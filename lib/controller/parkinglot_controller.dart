@@ -56,7 +56,6 @@ class ParkingLotControllerImp extends ParkingLotController {
 
     getVehiclesdata();
     getparkinglot();
-    getReservationdata();
     super.onInit();
 
     // print("placesid ...................................");
@@ -294,6 +293,14 @@ class ParkingLotControllerImp extends ParkingLotController {
     
 
   }
+
+
+  buttumupdate()  {
+    getVehiclesdata();
+    getparkinglot();
+    update();
+  }
+
 
 
 

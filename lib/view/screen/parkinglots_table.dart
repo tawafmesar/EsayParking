@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 import '../../controller/parkinglot_controller.dart';
+import '../../controller/vehicle_controller.dart';
 import '../../core/class/handlingdataview.dart';
 import '../../core/constant/color.dart';
 import '../../core/constant/parkinglot.dart';
@@ -158,6 +159,8 @@ class _ParkinglotsTableState extends State<ParkinglotsTable> {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(VehiclesControllerImp());
+
     final controller = Get.put(ParkingLotControllerImp());
 
     return Scaffold(
@@ -170,6 +173,15 @@ class _ParkinglotsTableState extends State<ParkinglotsTable> {
               .textTheme
               .headlineSmall!
               .copyWith(color: AppColor.whitee)),
+
+        actions: [
+          IconButton(
+            onPressed: () async {
+              controller.buttumupdate();
+            },
+            icon: const FaIcon(FontAwesomeIcons.arrowsRotate),
+          ),
+        ],
     ),
       body: SafeArea(
           child: SingleChildScrollView(
@@ -230,9 +242,8 @@ class _ParkinglotsTableState extends State<ParkinglotsTable> {
                                     ),
                                     Text(parkinglot[index]['items']),
                                     const Spacer(),
-                                    const Text('Waiting time: 2hrs'),
                                     Text(
-                                      'the car our vehicle',
+                                      'Not reserved',
                                       style:
                                       TextStyle(color: Colors.redAccent[100]),
                                     ),

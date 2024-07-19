@@ -1,5 +1,6 @@
 import 'package:esaypark/controller/add_vehicle_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 
@@ -20,8 +21,13 @@ class AddVehicleScreen extends StatelessWidget {
     Get.put(AddVehicleControllerImp());
     return Scaffold(
       appBar: AppBar(
-        elevation: 0.0,
-        title: Text('Add Vehicle'),
+        backgroundColor: AppColor.secoundColor2,
+        elevation: 10.0,
+        title: Text('Add Vehicle',
+            style: Theme.of(context)
+                .textTheme
+                .headlineSmall!
+                .copyWith(color: AppColor.whitee)),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context), // Handle back button press
@@ -54,7 +60,7 @@ class AddVehicleScreen extends StatelessWidget {
                             },
                             mycontroller: controller.plate_number,
                             hinttext: "Enter vehicle plate",
-                            iconData: Icons.person_outline,
+                            iconData:FontAwesome.car,
                             labeltext: "Plate",
 
                             // mycontroller: ,
@@ -67,20 +73,20 @@ class AddVehicleScreen extends StatelessWidget {
                             },
                             mycontroller: controller.vehicle_desc,
                             hinttext: "Enter vehicle description",
-                            iconData: Icons.email_outlined,
+                            iconData: Icons.description,
                             labeltext: "Description",
                             // mycontroller: ,
                           ),
 
                           CustonTextFormAuth(
-                            isNumber: true,
+                            isNumber: false,
 
                             valid: (val) {
                               return validInput(val!, 2, 19, "vehicle_type");
                             },
                             mycontroller: controller.vehicle_type,
                             hinttext: "  vehicle_type  ",
-                            iconData: Icons.phone_android_outlined,
+                            iconData: Icons.car_rental_rounded,
                             labeltext: "vehicle type ",
                             // mycontroller: ,
                           ),

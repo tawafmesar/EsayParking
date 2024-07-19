@@ -87,9 +87,9 @@ class SignUp extends StatelessWidget {
                       return validInput(val!, 2, 19, "phone");
                     },
                     mycontroller: controller.phone,
-                    hinttext: "ادخل رقم الجوال  ",
+                    hinttext: "Enter phone number",
                     iconData: Icons.phone_android_outlined,
-                    labeltext: "رقم الجوال",
+                    labeltext: "Phone",
                     // mycontroller: ,
                   ),
                   CustonTextFormAuth(

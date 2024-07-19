@@ -13,7 +13,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(ProfileControllerImp());
-
+    final controllerr =  Get.put(ProfileControllerImp());
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Stack(
@@ -145,6 +145,7 @@ class ProfileScreen extends StatelessWidget {
                               child: InkWell(
                                 onTap: (){
 
+                                  controllerr.logout();
                                 }, // Wrap everything in InkWell for tap detection
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center, // Center vertically

@@ -5,6 +5,8 @@ import '../../core/class/statusrequest.dart';
 import '../../core/constant/routes.dart';
 import '../../core/functions/handingdatacontroller.dart';
 import '../../data/datasource/remote/auth/signup.dart';
+import 'dart:math';
+
 
 abstract class SignUpController extends GetxController {
   signUp();
@@ -23,6 +25,8 @@ late TextEditingController password;
 StatusRequest statusRequest = StatusRequest.none;
 
 SignupData signupData = SignupData(Get.find());
+int verifyCode = 10000 + Random().nextInt(90000);
+String verifyCodeString ='';
 
 List data = [];
 
@@ -33,12 +37,17 @@ signUp() async {
     statusRequest = StatusRequest.loading;
     update() ;
     var response = await signupData.postdata(
-        username.text, password.text, email.text, phone.text);
+        username.text, password.text, email.text, phone.text, verifyCodeString);
     print("=============================== Controller $response ");
     statusRequest = handlingData(response);
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
         // data.addAll(response['data']);
+        var response2 = await signupData.postemaildata(
+            username.text, password.text, email.text, phone.text, verifyCodeString);
+        print("=============================== Controller $response2 ");
+
+
         Get.offNamed(AppRoute.verfiyCodeSignUp  ,arguments: {
           "email" : email.text
         });
@@ -65,6 +74,8 @@ signUp() async {
     phone = TextEditingController() ;
     email = TextEditingController();
     password = TextEditingController();
+    verifyCodeString = verifyCode.toString();
+
     super.onInit();
   }
 

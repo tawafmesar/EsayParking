@@ -34,6 +34,12 @@ class AddVehicleControllerImp extends AddVehicleController {
 
   @override
   AddVehicle() async {
+    print('plate_number.............. $plate_number');
+    print('plate_number.............. $vehicle_desc');
+
+    print('plate_number.............. $vehicle_type');
+    print('plate_number.............. $users_id');
+
     if (formstate.currentState!.validate()) {
       statusRequest = StatusRequest.loading;
       update() ;

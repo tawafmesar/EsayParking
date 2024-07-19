@@ -293,6 +293,13 @@ class ProfileControllerImp extends ProfileController {
 
   }
 
+  @override
+  logout() async {
 
+    myServices.sharedPreferences.setString("step","1") ;
+
+    await Future.delayed(Duration.zero); // Add this line to schedule the navigation in the next frame
+    Get.offNamed(AppRoute.login);
+  }
 
 }

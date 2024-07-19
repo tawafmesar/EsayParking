@@ -79,9 +79,9 @@ class ParkingPoliceScreen extends StatelessWidget {
                               itemCount: controller.reservationvehicle.length,
                               gridDelegate:
                                   const SliverGridDelegateWithFixedCrossAxisCount(
-                                childAspectRatio: 2.6,
+                                childAspectRatio: 2.4,
                                 crossAxisCount: 1,
-                                mainAxisSpacing: 10.0,
+                                mainAxisSpacing: 15.0,
                                 crossAxisSpacing: 5.0,
                               ),
                               itemBuilder: (context, index) {

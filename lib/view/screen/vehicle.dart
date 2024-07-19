@@ -19,8 +19,14 @@ class VehicleScreen extends StatelessWidget {
     final controller = Get.put(VehiclesControllerImp());
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Vehicles Table'),
+        appBar: AppBar(
+          backgroundColor: AppColor.secoundColor2,
+          elevation: 10.0,
+          title: Text('Vehicles Table',
+              style: Theme.of(context)
+                  .textTheme
+                  .headlineSmall!
+                  .copyWith(color: AppColor.whitee)),
           actions: [
             IconButton(
               onPressed: () async {
@@ -28,8 +34,8 @@ class VehicleScreen extends StatelessWidget {
               },
               icon: const FaIcon(FontAwesomeIcons.arrowsRotate),
             ),
-          ]
-      ),
+          ],
+        ),
       body: SafeArea(
           child: SingleChildScrollView(
             physics: const ScrollPhysics(),
@@ -94,14 +100,15 @@ class VehicleScreen extends StatelessWidget {
                                                       fontWeight: FontWeight.bold,
                                                       fontSize: 16),
                                                 ),
-                                                Text('items'),
+                                                SizedBox(height: 10,),
+
+                                                Text( "${controller.vehicles[index].vehicleDesc}",),
+                                                SizedBox(height: 5,),
+                                                Text( "${controller.vehicles[index].vehicleType}",style: TextStyle(color: Colors.orangeAccent),),
+
                                                 const Spacer(),
-                                                const Text('Waiting time: 2hrs'),
-                                                Text(
-                                                  'Closes at 10PM',
-                                                  style:
-                                                  TextStyle(color: Colors.redAccent[100]),
-                                                ),
+
+                                                const Text('Distance time: 2hrs'),
                                                 Row(
                                                   children: const [
                                                     cardButtons(iconData: Icons.call, label: 'Call',),

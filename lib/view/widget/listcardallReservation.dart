@@ -153,7 +153,7 @@ class ListCardAllReservation extends GetView<ParkingPoliceControllerImp> {
                       onPressed: () async {
                         print('testtt');
                         print(reservationmodel.reservationId!);
-                         contrllerr.checkoutreservation(reservationmodel.reservationId!);
+                        contrllerr.checkoutreservation(reservationmodel.reservationId!);
                       }, // Add function for button press
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center, // Align the icon and text in the center horizontally
